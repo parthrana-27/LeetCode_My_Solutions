@@ -1,20 +1,16 @@
 class Solution {
 public:
     vector<int> sequentialDigits(int low, int high) {
-        string seq="123456789";
         vector<int>ans;
         for(int len=2;len<=9;len++){
-            for(int i=0;i<=9-len;i++){
-                string sub=seq.substr(i,len);
-                int num=stoi(sub);
-                cout << num << " "; 
-                if(num>=low && num<=high){
-                    ans.push_back(num);
+            for(int i=1;i+len<=10;i++){
+                int val=0;
+                for(int d=i;d<i+len;d++){
+                    val=val*10+d;
                 }
-                if(num>high) return ans;
+                if(val>=low && val<=high) ans.push_back(val);
             }
         }
-        sort(ans.begin(),ans.end());
         return ans;
     }
 };
